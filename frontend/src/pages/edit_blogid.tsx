@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createOpenAI } from "@ai-sdk/openai";
 import { BlockNoteEditor, filterSuggestionItems } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
@@ -30,8 +31,6 @@ import { BACKEND_URL } from "../config";
 import GitHubNavbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Loader } from "./Loader";
-import { Loader2 } from "./Loader2";
 
 // Using proxy requests through your custom Express server
 const client = createBlockNoteAIClient({

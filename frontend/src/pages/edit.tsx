@@ -88,10 +88,6 @@ export default function Editlog() {
         return <Preview content={content} onBackToEdit={handleBackToEdit} />;
     }
 
-  const handleSave = () => {
-    const json = editor.document;
-    console.log("Blog content JSON:", json);
-  };
 
   return (
     <div className="h-screen flex flex-col bg-[#1e1e1e] text-white">
@@ -111,12 +107,6 @@ export default function Editlog() {
         >
           Preview Blog
         </button>
-        {/* <button
-          onClick={handleSave}
-          className="px-3 py-1 h-10 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Save Blog
-        </button> */}
       </div>
 
       {/* Editor Container */}
