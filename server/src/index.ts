@@ -58,7 +58,6 @@ const openai = new OpenAI({
 });
 
 
-// Custom API key validation middleware
 
 
 // AI completion endpoint for BlockNote
@@ -117,7 +116,17 @@ app.post('/ai', validateApiKey, async (req, res) => {
   }
 });
 
-
+// keep alive endpoint
+app.head('/health', (req, res) => {
+  // HEAD requests should not return a body
+  // Just return status code and headers
+  res.set({
+    'X-Service-Status': 'ok',
+    'X-Service-Uptime': process.uptime(),
+    'X-Last-Check': new Date().toISOString()
+  });
+  res.status(200).end();
+});
 
 // health checkpoint
 app.get('/health',(req,res)=>{
@@ -138,7 +147,7 @@ app.get('/blogs',(req,res)=>{
 app.post('/blog',auth,(req,res)=>{
     createBlog(req,res)
 })
-app.get('/blog/:id',auth,(req,res)=>{
+app.get('/blog/:id',(req,res)=>{
     getSingleBlogById(req,res)
 })
 app.get('/userblog',auth,(req, res)=>{

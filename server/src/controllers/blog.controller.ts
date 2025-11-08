@@ -66,7 +66,7 @@ export async function getBlogbyId(){
 // get blogs by id
 export async function getSingleBlogById(req: Request, res: Response) {
     try {
-        const { id } = req.params; // Get blog ID from URL parameters
+        const { id } = req.params;
         
         const blog = await blogModel.findById(id).populate("user");
         

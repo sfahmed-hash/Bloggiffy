@@ -23,15 +23,16 @@ import {
 import { en as aiEn } from "@blocknote/xl-ai/locales";
 import "@blocknote/xl-ai/style.css";
 import GitHubNavbar from "../components/Navbar";
-import Preview from "./Preview"; // Import the Preview component
+import Preview from "./Preview"; 
+import { BACKEND_URL } from "../config";
 
 export const BLOCKNOTE_AI_SERVER_API_KEY="BLOCKNOTE_SECRET"
-export const BLOCKNOTE_AI_SERVER_BASE_URL="http://localhost:3001/ai"
+export const BLOCKNOTE_AI_SERVER_BASE_URL=`${BACKEND_URL}/ai`
 
 // Using proxy requests through your custom Express server
 const client = createBlockNoteAIClient({
   apiKey: BLOCKNOTE_AI_SERVER_API_KEY,
-  baseURL: "http://localhost:3001/ai",
+  baseURL: BLOCKNOTE_AI_SERVER_BASE_URL,
 });
 
 // Use OpenAI model via proxy client
@@ -44,19 +45,16 @@ export default function Editlog() {
   const [content, setContent] = useState();
   const [changeToPreview, setChangeToPreview] = useState(false); 
 
-  // Creates a new editor instance with AI extension
   const editor = useCreateBlockNote({
     dictionary: {
       ...en,
-      ai: aiEn, // add default translations for the AI extension
+      ai: aiEn,
     },
-    // Register the AI extension
     extensions: [
       createAIExtension({
         model,
       }),
     ],
-    // Initial content for demo purposes
     initialContent: [
       {
         type: "heading",
@@ -139,7 +137,6 @@ export default function Editlog() {
   );
 }
 
-// Formatting toolbar with the `AIToolbarButton` added
 function FormattingToolbarWithAI() {
   return (
     <FormattingToolbarController
@@ -154,7 +151,6 @@ function FormattingToolbarWithAI() {
   );
 }
 
-// Slash menu with the AI option added
 function SuggestionMenuWithAI(props: any) {
   return (
     <SuggestionMenuController

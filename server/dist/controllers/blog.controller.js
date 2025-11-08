@@ -82,7 +82,7 @@ function getBlogbyId() {
 function getSingleBlogById(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { id } = req.params; // Get blog ID from URL parameters
+            const { id } = req.params;
             const blog = yield blog_model_1.blogModel.findById(id).populate("user");
             if (!blog) {
                 return res.json({
