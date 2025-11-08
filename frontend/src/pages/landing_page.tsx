@@ -12,6 +12,7 @@ const LandingPage: React.FC = () => {
   const GotoDashboard = ()=>{
     window.location.href = "/blogs"
   }
+  //property of the window.location object in JavaScript that represents the current URL of the page.
   useEffect(()=>{
     const githubToken = localStorage.getItem("token");
     if(githubToken){

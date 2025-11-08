@@ -23,6 +23,7 @@ app.get("/auth/github", (req, res) => {
 });
 
 app.get("/auth/github/callback", async (req, res) => {
+  //GitHub sends code → You exchange it for access_token → Use token to fetch user data → Redirect frontend with token.
   const code = req.query.code;
 
   try {

@@ -53,6 +53,7 @@ app.get("/auth/github", (req, res) => {
     res.redirect(redirectURL);
 });
 app.get("/auth/github/callback", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //GitHub sends code → You exchange it for access_token → Use token to fetch user data → Redirect frontend with token.
     const code = req.query.code;
     try {
         const tokenRes = yield axios_1.default.post(`https://github.com/login/oauth/access_token`, {
